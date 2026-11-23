@@ -1,12 +1,19 @@
 # 🧙 One Ring Identity Platform
 
-A Lord of the Rings themed Identity and Access Management (IAM), Active Directory, and Systems Administration lab built using Microsoft Hyper-V and Windows Server.
+A Lord of the Rings themed Identity and Access Management (IAM), Active Directory, and Systems Administration lab built on Microsoft Hyper-V.
 
-The goal of this project is to simulate a small enterprise Identity Governance and Administration (IGA) environment using Middle-earth inspired identities, applications, resources, and access controls.
+The goal of this project is to simulate an enterprise Identity Governance and Administration (IGA) environment using Active Directory, RBAC, access governance, lifecycle management, and security administration concepts within a Middle-earth themed organization.
 
 ---
 
 # Current Environment
+
+## Platform
+
+- Hyper-V
+- Windows Server 2022
+- Active Directory Domain Services
+- DNS
 
 ## Domain
 
@@ -18,39 +25,29 @@ middleearth.local
 
 | Server | Role |
 |----------|----------|
-| ME-DC01 | Primary Domain Controller |
+| ME-DC01 | Domain Controller & DNS Server |
 
 ---
 
-# Project Objectives
+# Active Directory Design
 
-- Active Directory Administration
-- Identity Access Management (IAM)
-- Role-Based Access Control (RBAC)
-- Active Directory Group Design
-- Identity Governance
-- User Lifecycle Management
-- PowerShell Automation
-- Windows Systems Administration
-
----
-
-# Active Directory Organizational Structure
+## Organizational Units
 
 ```text
 middleearth.local
 └─ Middle-Earth
     ├─ Users
-    │  ├─ Gondor
-    │  ├─ Rohan
-    │  ├─ Rivendell
-    │  ├─ Hobbiton
-    │  └─ Mordor
+    │   ├─ Gondor
+    │   ├─ Rohan
+    │   ├─ Rivendell
+    │   ├─ Hobbiton
+    │   ├─ Isengard
+    │   └─ Mordor
     │
     ├─ Groups
-    │  ├─ Role Groups
-    │  ├─ Application Groups
-    │  └─ Resource Groups
+    │   ├─ Role Groups
+    │   ├─ Application Groups
+    │   └─ Resource Groups
     │
     ├─ Computers
     ├─ Servers
@@ -60,11 +57,11 @@ middleearth.local
 
 ---
 
-# Identity Model
+# Identity Governance Model
 
 ## Role Groups
 
-Role groups determine who a user is within the organization.
+Role groups define a user's business role.
 
 ```text
 SG_ROLE_KING
@@ -82,7 +79,7 @@ SG_ROLE_TRAVELER
 
 ## Application Groups
 
-Application groups determine which applications a user can access.
+Application groups define access to business systems.
 
 ```text
 SG_APP_PAL_USER
@@ -100,7 +97,7 @@ SG_APP_RIV_ADMIN
 
 ## Resource Groups
 
-Resource groups control access to file shares and protected resources.
+Resource groups will control file share and infrastructure permissions.
 
 ```text
 DL_FS_GONDOR_RW
@@ -114,9 +111,9 @@ DL_FS_COUNCIL_RW
 
 ---
 
-# IAM Access Flow
+# IAM Access Model
 
-The lab follows Active Directory RBAC and AGDLP principles.
+The lab follows RBAC and Active Directory group nesting concepts.
 
 ```text
 User
@@ -130,85 +127,49 @@ Resource Group
 Access Granted
 ```
 
-Example:
+---
+
+# Current User Population
+
+## Gondor
 
 ```text
-Frodo
-  ↓
-SG_ROLE_CITIZEN
-  ↓
-SG_APP_PP_USER
-  ↓
-DL_FS_HOBBITON_RW
-  ↓
-File Share Access
+aragorn
+boromir
+faramir
+denethor
+beregond
 ```
 
----
+## Rohan
 
-# Current Progress
+```text
+theoden
+eomer
+eowyn
+gamling
+```
 
-## Phase 1 - Active Directory Foundation
+## Rivendell
 
-- [x] Hyper-V environment created
-- [x] Windows Server 2022 installed
-- [x] DNS configured
-- [x] Active Directory Domain Services installed
-- [x] middleearth.local forest created
-- [x] Organizational Unit structure created
-- [x] Initial RBAC group design implemented
+```text
+elrond
+legolas
+glorfindel
+arwen
+```
 
-## Phase 2 - Identity Administration
+## Hobbiton
 
-- [ ] Create fellowship user accounts
-- [ ] Assign enterprise roles
-- [ ] Configure privileged accounts
-- [ ] Implement group memberships
+```text
+frodo
+samwise
+merry
+pippin
+```
 
-## Phase 3 - Resource Access Management
+## Isengard
 
-- [ ] Deploy file server
-- [ ] Configure AGDLP
-- [ ] Implement NTFS permissions
-- [ ] Create shared resources
-
-## Phase 4 - Identity Governance
-
-- [ ] Joiner Process
-- [ ] Mover Process
-- [ ] Leaver Process
-- [ ] Access Reviews
-
-## Phase 5 - Security Operations
-
-- [ ] SIEM Integration
-- [ ] Sysmon Monitoring
-- [ ] Event Auditing
-- [ ] Threat Simulation
-
----
-
-# Lessons Learned
-
-## Day 1
-
-- Successfully deployed Active Directory Domain Services.
-- Created the Middle-earth organizational hierarchy.
-- Designed initial IAM-focused AD structure.
-- Rebuilt the environment after losing administrator credentials.
-- Implemented checkpoint and recovery planning for future work.
-
----
-
-# Future Enhancements
-
-- Microsoft Entra ID Integration
-- Self-Service Access Requests
-- Approval Workflows
-- Group Lifecycle Management
-- Governance Dashboard
-- Automated Provisioning using PowerShell
-
----
-
-> One Ring Identity Platform is an educational IAM and Systems Administration project designed to demonstrate enterprise identity management concepts using Active Directory, RBAC, governance processes, and automation.
+```text
+saruman
+grima
